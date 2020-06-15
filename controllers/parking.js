@@ -265,7 +265,8 @@ exports.listV = (req, res, next) => {
 
     const options = {
       page: req.url.split('/')[3],
-      limit: 3
+      limit: 3,
+      sort: { plaque: 1 }/*pour le tri*/
     };
 
     Vehicule.paginate({ parking: nomParking}, options)/*lecture bdd*/
@@ -273,4 +274,26 @@ exports.listV = (req, res, next) => {
             res.render('list', { list: vehicules, nom: nomParking });
         })
         .catch(error => res.status(500).send({ error }));
+};
+
+
+exports.gestionSearch = (req, res, next) => {
+    console.log(req.body);
+}
+
+exports.search = (req, res, next) => {
+   Vehicule.find({
+        $text: {
+            $search: req.body.recherche
+        }
+    }, function(err, result) {
+        if (err) throw err;
+        if (result) {
+            res.render('search', { list: result, nom: req.body.recherche });
+        } else {
+            res.send(JSON.stringify({
+                error : 'Error'
+            }))
+        }
+    })
 };

@@ -18,5 +18,7 @@ routerParking.post('/creerV/:nom', parkingCtrl.creerV);
 routerParking.get('/deleteV/:nom', parkingCtrl.gestionDelV);
 routerParking.post('/deleteV/:nom', parkingCtrl.deleteV);
 routerParking.get('/listV/:nom/:page', parkingCtrl.listV);
+/*routerParking.post('/search', parkingCtrl.gestionSearch);*/
+routerParking.post('/search', parkingCtrl.search);
 
 module.exports = routerParking;

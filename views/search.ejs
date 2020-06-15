@@ -10,13 +10,12 @@
  
     <body>
       <header>
-        <a class="none" href="/"><h2><img src="/public/images/logo.png" alt="logo" />liste des vehicules dans <%= nom %></h2></a>
+        <a class="none" href="/"><h2><img src="/public/images/logo.png" alt="logo" />Résultats de recherche pour <%= nom %></h2></a>
       </header>
       <hr>
         <nav class="menu">
             <ul>
                 <li><a href="/">Accueil</a></li>
-                <li><a href="/accueil/<%= nom %>">Retour</a></li>
             </ul>
         </nav>
         <hr>
@@ -36,7 +35,7 @@
             </tr>
           </thead>
           <tbody>
-            <% list.docs.forEach(function(vhl) { %>
+            <% list.forEach(function(vhl) { %>
             <tr>
               <td><%= vhl.plaque %></td>
               <td><script>document.write(dateFr("<%= vhl.dateEntre %>"))</script></td>
@@ -50,27 +49,5 @@
       </div>   
 
     </body>
-
-    <script type="text/javascript">
-
-      var page = parseInt("<%= list.page %>", 10);
-      if("<%= list.page %>" === "NaN"){
-        page = 1;
-      }
-      var nom = "<%= nom %>";
-      var mini = page - 10;
-      var maxi = page + 10;
-      var test = parseInt("<%= list.totalPages %>", 10);
-      var prev = parseInt("<%= list.prevPage %>", 10);
-      var next = parseInt("<%= list.nextPage %>", 10);
-      var hasPrev = "<%= list.hasPrevPage %>";
-      var hasNext = "<%= list.hasNextPage %>";
-      total = "<%= list.totalPages %>";
-
-      pagination(nom,page,mini,maxi,test,prev,next,hasPrev,hasNext,total);
-
-    </script>
-
-
 
 </html>

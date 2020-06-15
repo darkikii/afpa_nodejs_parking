@@ -13,4 +13,6 @@ const vehiculeSchema = mongoose.Schema({
 vehiculeSchema.plugin(mongoosePaginate);
 vehiculeSchema.plugin(uniqueValidator);
 
+vehiculeSchema.index({ plaque: 'text' });
+
 module.exports = mongoose.model('Vehicule', vehiculeSchema);
