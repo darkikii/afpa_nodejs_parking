@@ -5,6 +5,7 @@ var path = require('path');
 
 /*page accueil*/
 exports.accueil = (req, res, next) => {
+    var error="";
     nomParking = req.url.split('/')[2];
     regex=/%20/gi;
     nomParking = nomParking.replace(regex,' ');/*remplace les %20 par espace*/
@@ -16,7 +17,7 @@ exports.accueil = (req, res, next) => {
             var vLibre = parkings.placeVLibre;
             var mLibre = parkings.placeMLibre;
 
-            res.render('accueil', { nom: nom, nbrPlaceV: nbrPlaceV, nbrPlaceM: nbrPlaceM, vLibre: vLibre, mLibre: mLibre });
+            res.render('accueil', { nom: nom, nbrPlaceV: nbrPlaceV, nbrPlaceM: nbrPlaceM, vLibre: vLibre, mLibre: mLibre,error: error });
         })
         .catch(error => res.status(500).send({ error }));        
 };
@@ -146,32 +147,54 @@ exports.creerV = (req, res, next) => {
                     parking: nomParking,
                 });
 
-                if(req.body.type === "voiture"){
-                    Parking.updateOne(
-                    { nom: nomParking },
-                    { $set: { 
-                            placeVLibre: parkings.placeVLibre-1,               
-                        } 
-                    })
-                    .then(function(result) {
-                    vehicule.save()
-                    .then(() => res.status(200).redirect('/accueil/'+nomParking))
-                    .catch(error => res.status(500).send({ error }));
-                    })
+                if((parkings.placeVLibre-1 <= 0 && req.body.type === "voiture") || (req.body.type === "moto" && parkings.placeMLibre-1 <= 0 ))
+                {
+                    var error="Il n'y a plus de place dans le parking";
+                    nomParking = req.url.split('/')[2];
+                    regex=/%20/gi;
+                    nomParking = nomParking.replace(regex,' ');/*remplace les %20 par espace*/
+                    Parking.findOne({ nom: nomParking })/*lecture bdd*/
+                        .then((parkings) => {
+                            var nom = parkings.nom;
+                            var nbrPlaceV = parkings.nbrPlaceV;
+                            var nbrPlaceM = parkings.nbrPlaceM;
+                            var vLibre = parkings.placeVLibre;
+                            var mLibre = parkings.placeMLibre;
+
+                            res.render('accueil', { nom: nom, nbrPlaceV: nbrPlaceV, nbrPlaceM: nbrPlaceM, vLibre: vLibre, mLibre: mLibre,error: error });
+                        })
+                        .catch(error => res.status(500).send({ error }));
                 }
-                else{
-                    Parking.updateOne(
-                    { nom: nomParking },
-                    { $set: { 
-                            placeMLibre: parkings.placeMLibre-1,               
-                        } 
-                    })
-                    .then(function(result) {
-                    vehicule.save()
-                    .then(() => res.status(200).redirect('/accueil/'+nomParking))
-                    .catch(error => res.status(500).send({ error }));
-                    })
+                else
+                {
+                    if(req.body.type === "voiture"){
+                        Parking.updateOne(
+                        { nom: nomParking },
+                        { $set: { 
+                                placeVLibre: parkings.placeVLibre-1,               
+                            } 
+                        })
+                        .then(function(result) {
+                        vehicule.save()
+                        .then(() => res.status(200).redirect('/accueil/'+nomParking))
+                        .catch(error => res.status(500).send({ error }));
+                        })
+                    }
+                    else{
+                        Parking.updateOne(
+                        { nom: nomParking },
+                        { $set: { 
+                                placeMLibre: parkings.placeMLibre-1,               
+                            } 
+                        })
+                        .then(function(result) {
+                        vehicule.save()
+                        .then(() => res.status(200).redirect('/accueil/'+nomParking))
+                        .catch(error => res.status(500).send({ error }));
+                        })
+                    }
                 }
+                
 
             } catch (error) {
                 res.status(401).send(error);

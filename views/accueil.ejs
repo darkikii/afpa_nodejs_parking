@@ -22,6 +22,7 @@
             <div class="text row">
                <p>Le parking peut contenir <%= nbrPlaceV %> voiture et <%= nbrPlaceM %> moto</p>
                <p>Il lui reste de la place pour <%= vLibre %> voiture et <%= mLibre %> moto</p>
+               <p id="errorMessage" style="color: red"><%= error %></p>
            </div>
             <form  action="/creerV/<%= nom %>" method="get" class="row">
             
