@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="/public/style.css" />
+        <link rel="stylesheet" type="text/css" href="/public/layout.css" />
         <title>Accueil</title>
     </head>
  
@@ -17,25 +18,30 @@
             </ul>
         </nav>
         <hr>
-       <div class="text">
-           <p>Le parking peut contenir <%= nbrPlaceV %> voiture et <%= nbrPlaceM %> moto</p>
-           <p>Il lui reste de la place pour <%= vLibre %> voiture et <%= mLibre %> moto</p>
-       </div>
-
-       <form  action="/creerV/<%= nom %>" method="get">
+        <section class="container">
+            <div class="text row">
+               <p>Le parking peut contenir <%= nbrPlaceV %> voiture et <%= nbrPlaceM %> moto</p>
+               <p>Il lui reste de la place pour <%= vLibre %> voiture et <%= mLibre %> moto</p>
+           </div>
+            <form  action="/creerV/<%= nom %>" method="get" class="row">
             
                 <input type="submit" value="Ajouter véhicule"/>
             
-        </form>
-        <form  action="/deleteV/<%= nom %>" method="get">
+            </form>
+            <form  action="/deleteV/<%= nom %>" method="get" class="row">
             
                 <input type="submit" value="Retirer véhicule"/>
             
-        </form>
-        <form  action="/listV/<%= nom %>/1" method="get">
-            
+            </form>
+            <form  action="/listV/<%= nom %>/1" method="get" class="row">
+                
                 <input type="submit" value="Lister véhicule"/>
-            
-        </form>
+                
+            </form>
+        </section>
+       
+
+       
+        
     </body>
 </html>

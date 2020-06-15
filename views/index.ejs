@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="/public/style.css" />
+        <link rel="stylesheet" type="text/css" href="/public/layout.css" />
         <link rel="icon" type="image/png" href="favicon.png" />
         <title>Index</title>
     </head>
@@ -12,8 +13,8 @@
             <h1><img src="public/images/logo.png" alt="logo" />Ma gestion de parking</h1>     
         </header>
                 
-        <div>
-            <form method="post">
+        <section class="container">
+            <form method="post" class="row">
             
                 <select name="select" id="select">
                     <% todolist.forEach(function(todo) { %>
@@ -25,12 +26,12 @@
             
             </form>
             
-            <form  action="/creerPark" method="get">
+            <form  action="/creerPark" method="get" class="row">
                 
                     <input type="submit" value="Creer parking"/>
                 
             </form>            
-        </div>              
+        </section>              
 
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="public/form.js"></script>

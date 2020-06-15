@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="/public/style.css" />
+        <link rel="stylesheet" type="text/css" href="/public/layout.css" />
         <title>CreationP</title>
     </head>
  
@@ -17,12 +18,15 @@
             </ul>
         </nav>
         <hr>
-       <form  action="/creerPark" method="post">
+        <section class="container">
+            <form  action="/creerPark" method="post" class="row" >
             
                 <input type="text" name="nom" id="nom" placeholder="nom du parking"/>
                 <input type="number" name="nbrPlaceV" id="nbrPlaceV" min="0" placeholder="Le nombre de voitures maximum"/>
                 <input type="number" name="nbrPlaceM" id="nbrPlaceM" min="0" placeholder="Le nombre de motos maximum"/>
                 <input type="submit" value="Creer"/>            
-        </form>
+            </form>
+        </section>
+       
     </body>
 </html>

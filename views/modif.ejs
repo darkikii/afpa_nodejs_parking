@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="/public/style.css" />
+        <link rel="stylesheet" type="text/css" href="/public/layout.css" />
         <title>Index</title>
     </head>
  
@@ -11,13 +12,14 @@
             <a href="/"><h1><img src="/public/images/logo.png" alt="logo" /><%= nom %></h1></a>
         </header>
         <hr>
-        <nav class="menu">
+        <nav class="menu row">
             <ul>
                 <li><a href="/">Accueil</a></li>
             </ul>
         </nav>
         <hr>
-       <form  action="/modifParkValid" method="post">
+        <section class="container">
+            <form  action="/modifParkValid" method="post" class="row">
            
                 <input type="text" name="nom" id="nom" value="<%= nom %>"/>
                 <input type="number" name="nbrPlaceV" id="nbrPlaceV" min="0" value="<%= nbrPlaceV %>"/>
@@ -27,6 +29,8 @@
                 <input type="submit" value="Modifier"/>
                 <input type="text" name="id" id="id" min="0" value="<%= id %>" hidden/>
             
-        </form>
+            </form>
+        </section>
+       
     </body>
 </html>

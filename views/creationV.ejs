@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <link rel="stylesheet" type="text/css" href="/public/style.css" />
+        <link rel="stylesheet" type="text/css" href="/public/layout.css" />
         <title>CreationV</title>
     </head>
  
@@ -18,7 +19,8 @@
             </ul>
         </nav>
         <hr>
-       <form  action="/creerV/<%= nom %>" method="post">
+        <section class="container">
+            <form  action="/creerV/<%= nom %>" method="post" class="row">
             
                 <select name="type">
                     <option>voiture</option>
@@ -28,6 +30,8 @@
                 <p><label for="payer">payer</label><input type="checkbox" name="payer" id="payer" /></p>
                 <input type="submit" value="Ajouter voiture"/>
             
-        </form>
+            </form>
+        </section>
+       
     </body>
 </html>

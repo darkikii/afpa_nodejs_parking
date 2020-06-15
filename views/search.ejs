@@ -5,6 +5,7 @@
         <title>Accueil</title>
         <link rel="stylesheet" type="text/css" href="/public/style.css" />
         <link rel="stylesheet" type="text/css" href="/public/pagination.css" />
+        <link rel="stylesheet" type="text/css" href="/public/layout.css" />
         <script type="text/javascript" src="/public/pagination.js"></script>
     </head>
  
@@ -13,19 +14,19 @@
         <a class="none" href="/"><h2><img src="/public/images/logo.png" alt="logo" />Résultats de recherche pour <%= nom %></h2></a>
       </header>
       <hr>
-        <nav class="menu">
+        <nav class="menu row">
             <ul>
                 <li><a href="/">Accueil</a></li>
             </ul>
         </nav>
-        <hr>
+      <hr>
         <form action="/search" method="post">
           <label for="recherche">Recherche</label> :
           <input type="text" id="recherche" name="recherche">
           <input type="submit" value="Rechercher" id="Rechercher">
         </form>
-      <div>
-        <table>
+      <section class="container">
+        <table class="row">
           <thead>
             <tr>
               <th>plaque</th>
@@ -45,8 +46,8 @@
             <% }); %>
           </tbody>    
         </table> 
-        <nav id="pagination"></nav> 
-      </div>   
+        <nav id="pagination" class="row"></nav> 
+      </section>   
 
     </body>
 

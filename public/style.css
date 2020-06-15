@@ -19,35 +19,6 @@ header a, .none{
 
 img{
 	float: left;
-
-}
-
-h1{
-	font-size: 3.4em;
-	text-align: center;
-	background:white;
-	color:rgb(207,60,60);
-	border:2px grey solid;
-	border-radius: 5px;
-	margin:auto;
-	width:33%;
-	height:150px;
-	padding:10px;
-	box-shadow: 3px 3px 6px black;
-}
-
-h2{
-	font-size: 3.4em;
-	text-align: center;
-	background:white;
-	color:rgb(207,60,60);
-	border:2px grey solid;
-	border-radius: 5px;
-	margin:auto;
-	width:50%;
-	height:150px;
-	padding:10px;
-	box-shadow: 3px 3px 6px black;
 }
 
 .text{
