@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="/public/style.css" />
+        <title>CreationV</title>
+    </head>
+ 
+    <body>
+        <header>
+            <a href="/"><h1><img src="/public/images/logo.png" alt="logo" /><%= nom %></h1></a>
+        </header>
+        <hr>
+        <nav class="menu">
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/accueil/<%= nom %>">Retour</a></li>
+            </ul>
+        </nav>
+        <hr>
+       <form  action="/creerV/<%= nom %>" method="post">
+            
+                <select name="type">
+                    <option>voiture</option>
+                    <option>moto</option>
+                </select>
+                <input type="text" name="plaque" id="plaque" placeholder="numero plaque"/>
+                <p><label for="payer">payer</label><input type="checkbox" name="payer" id="payer" /></p>
+                <input type="submit" value="Ajouter voiture"/>
+            
+        </form>
+    </body>
+</html>

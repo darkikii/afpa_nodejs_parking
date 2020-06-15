@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" type="text/css" href="/public/style.css" />
+        <title>Accueil</title>
+    </head>
+ 
+    <body>
+       <a class="none" href="/"><h2>Sélection du véhicule à sortir</h2></a>
+       <hr>
+        <nav class="menu">
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/accueil/<%= nom %>">Retour</a></li>
+            </ul>
+        </nav>
+        <hr>
+        <form action="/deleteV/<%= nom %>" method="post">
+            
+                <select name="deleteV">
+                    <% todolist.forEach(function(todo) { %>
+                        <option><%= todo %></option>
+                    <% }); %>
+                </select>
+                <input type="submit" value="Valider"/>
+            
+        </form>
+    </body>
+</html>

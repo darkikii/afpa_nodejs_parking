@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />       
+        <title>Accueil</title>
+        <link rel="stylesheet" type="text/css" href="/public/style.css" />
+        <link rel="stylesheet" type="text/css" href="/public/pagination.css" />
+        <script type="text/javascript" src="/public/pagination.js"></script>
+    </head>
+ 
+    <body>
+      <header>
+        <a class="none" href="/"><h2><img src="/public/images/logo.png" alt="logo" />liste des vehicules dans <%= nom %></h2></a>
+      </header>
+      <hr>
+        <nav class="menu">
+            <ul>
+                <li><a href="/">Accueil</a></li>
+                <li><a href="/accueil/<%= nom %>">Retour</a></li>
+            </ul>
+        </nav>
+        <hr>
+        <label for="recherche">Recherche</label> :
+        <input type="text" id="recherche">
+        <div id="suggestions"></div>
+      <div>
+        <table>
+          <thead>
+            <tr>
+              <th>plaque</th>
+              <th>heure d'entrée</th>
+              <th>payé</th>
+              <th>type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% list.docs.forEach(function(vhl) { %>
+            <tr>
+              <td><%= vhl.plaque %></td>
+              <td><script>document.write(dateFr("<%= vhl.dateEntre %>"))</script></td>
+              <td><%= vhl.paye %></td>
+              <td><%= vhl.type %></td>
+            </tr>
+            <% }); %>
+          </tbody>    
+        </table> 
+        <nav id="pagination"></nav> 
+      </div>   
+
+    </body>
+
+    <script type="text/javascript">
+
+      var page = parseInt("<%= list.page %>", 10);
+      if("<%= list.page %>" === "NaN"){
+        page = 1;
+      }
+      var nom = "<%= nom %>";
+      var mini = page - 10;
+      var maxi = page + 10;
+      var test = parseInt("<%= list.totalPages %>", 10);
+      var prev = parseInt("<%= list.prevPage %>", 10);
+      var next = parseInt("<%= list.nextPage %>", 10);
+      var hasPrev = "<%= list.hasPrevPage %>";
+      var hasNext = "<%= list.hasNextPage %>";
+      total = "<%= list.totalPages %>";
+
+      pagination(nom,page,mini,maxi,test,prev,next,hasPrev,hasNext,total);
+      var suggestions = document.getElementById("suggestions");
+
+document.getElementById("recherche").addEventListener("input", function (e) {
+  
+  suggestions.innerHTML = "";
+  /*const json = '"<%= list.docs %>"';*/
+  var liste = JSON.parse(json);
+
+  for (var i = 0; i < 10; i++) {
+  var suggestion = document.createElement("div");
+  suggestion.setAttribute("class","suggestion");  
+  var idx = liste[i].indexOf(e.target.value);
+  if (idx != -1) {
+    suggestion.textContent = liste[i];
+    suggestions.appendChild(suggestion);
+    }
+  suggestion.addEventListener("click", function (e) {
+      recherche.value = e.target.textContent;
+  });
+
+  }
+  
+});
+
+    </script>
+
+
+
+</html>
